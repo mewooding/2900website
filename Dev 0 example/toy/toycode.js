@@ -7,7 +7,8 @@ PS.init = function( system, options ) {
 
 	PS.gridSize(8,8 );
 
-	PS.statusText( "Toy \n Press Delete to clear");
+	PS.statusText( "Toy");
+
 	PS.statusColor(PS.COLOR_RED);
 
 	// Add any other initialization code you need here.
