@@ -3,11 +3,12 @@
 
 PS.init = function( system, options ) {
 
-	PS.debug( "PS.init() called\n" );
+	//PS.debug( "PS.init() called\n" );
 
 	PS.gridSize(8,8 );
 
-	PS.statusText( "Toy" );
+	PS.statusText( "Toy \n Press Delete to clear");
+	PS.statusColor(PS.COLOR_RED);
 
 	// Add any other initialization code you need here.
 };
@@ -15,19 +16,22 @@ PS.init = function( system, options ) {
 PS.touch = function( x, y, data, options ) 
 {
 	PS.color(x,y,PS.COLOR_RED)
-	PS.debug( "PS.touch() @ " + x + ", " + y + "\n" );
+	//PS.debug( "PS.touch() @ " + x + ", " + y + "\n" );
 
 };
 
-/*PS.color=function(x,y,data,options)
-{
-	if (PS.gridColor(PS.COLOR_RED))
+PS.keyDown = function( key, shift, ctrl, options ) {
+
+	//PS.debug( "PS.keyDown(): key=" + key + ", shift=" + shift + ", ctrl=" + ctrl + "\n" );
+	if (key)
 	{
-		PS.color(PS.ALL, PS.ALL,PS.COLOR_BLUE);
-		PS.debug("all red \n");
-	};
+		//PS.debug( "if statement \n" );
+		PS.color( PS.ALL, PS.ALL, PS.COLOR_WHITE );
+	}
+	
+	// Add code here for when a key is pressed.
 };
-*/
+
 
 PS.release = function( x, y, data, options ) {
 
@@ -62,12 +66,7 @@ PS.exitGrid = function( options ) {
 };
 
 
-PS.keyDown = function( key, shift, ctrl, options ) {
 
-	PS.debug( "PS.keyDown(): key=" + key + ", shift=" + shift + ", ctrl=" + ctrl + "\n" );
-	PS.gridRefresh(PS.KEY_DELETE);
-	// Add code here for when a key is pressed.
-};
 
 
 PS.keyUp = function( key, shift, ctrl, options ) {
