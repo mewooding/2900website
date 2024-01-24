@@ -8,6 +8,7 @@ PS.init = function( system, options ) {
 	PS.gridSize(8,8 );
 
 	PS.statusText( "Toy");
+	//writing a comment so it updates
 
 	PS.statusColor(PS.COLOR_RED);
 
