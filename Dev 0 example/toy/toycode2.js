@@ -10,7 +10,7 @@ PS.init = function( system, options ) {
 	PS.statusText( "Press any key to clear");
 	//writing a comment so it updates
 
-	PS.statusColor(PS.COLOR_RED);
+	PS.statusColor(PS.COLOR_BLACK);
 
 	// Add any other initialization code you need here.
 };
@@ -18,7 +18,7 @@ PS.init = function( system, options ) {
 PS.touch = function( x, y, data, options ) 
 {
 	
-	PS.debug( "PS.touch() @ " + x + ", " + y + "\n" );
+	//PS.debug( "PS.touch() @ " + x + ", " + y + "\n" );
     if (PS.color(x,y) == PS.COLOR_WHITE)
     {
         PS.color(x,y,PS.COLOR_RED);
@@ -26,32 +26,26 @@ PS.touch = function( x, y, data, options )
     }
     else if (PS.color(x,y) == PS.COLOR_RED)
     {
-        //PS.debug( "blue \n" );
         PS.color(x,y, PS.COLOR_ORANGE);
     }
     else if (PS.color(x,y) == PS.COLOR_ORANGE)
     {
-        //PS.debug( "blue \n" );
         PS.color(x,y, PS.COLOR_YELLOW);
     }
     else if (PS.color(x,y) == PS.COLOR_YELLOW)
     {
-        //PS.debug( "blue \n" );
         PS.color(x,y, PS.COLOR_GREEN);
     }
     else if (PS.color(x,y) == PS.COLOR_GREEN)
     {
-        //PS.debug( "blue \n" );
         PS.color(x,y, PS.COLOR_BLUE);
     }
     else if (PS.color(x,y) == PS.COLOR_BLUE)
     {
-        //PS.debug( "blue \n" );
         PS.color(x,y, PS.COLOR_VIOLET);
     }
     else if (PS.color(x,y) == PS.COLOR_VIOLET)
     {
-        //PS.debug( "blue \n" );
         PS.color(x,y, PS.COLOR_WHITE);
     }
 };
