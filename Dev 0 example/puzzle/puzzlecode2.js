@@ -70,7 +70,7 @@ PS.touch = function( x,y, data, options )
 
         if(whitenum <= p)
         {
-            PS.statusText( "YOU WIN!");
+            PS.statusText( "Next Level!");
             PS.color( PS.ALL, PS.ALL, PS.COLOR_GREEN);
             check=false;
             p ++;
@@ -78,7 +78,7 @@ PS.touch = function( x,y, data, options )
             setTimeout(function()
             {
                 PS.color( PS.ALL, PS.ALL, PS.COLOR_WHITE);
-                PS.statusText( "Fill all but " + p + " square");
+                PS.statusText( "Fill all but " + p + " squares");
                 q++;
                 PS.gridSize(q,q );
             },1000);
