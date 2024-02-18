@@ -119,19 +119,7 @@ function play()
 	var itemtype = PS.random(6);
 	var itemx = PS.random(10);
 
-	//spawns item
-	if (itemtype == 1)
-	{
-		PS.color(itemx, 1, sun)
-	} 
-	if (itemtype == 2)
-	{
-		PS.color(itemx, 1, water)
-	} 
-	if (itemtype == 3 || itemtype == 4) 
-	{
-		PS.color(itemx, 1, pest)
-	} 
+	
 	
 
 	//checks item location, changes score
@@ -187,7 +175,23 @@ function play()
 		}
 		
 	}
+
+	//spawns item
+	if (itemtype == 1)
+	{
+		PS.color(itemx, 1, sun)
+	} 
+	if (itemtype == 2)
+	{
+		PS.color(itemx, 1, water)
+	} 
+	if (itemtype == 3 || itemtype == 4) 
+	{
+		PS.color(itemx, 1, pest)
+	} 
+
 	PS.statusText("Plant Grow");
+	
 	if(score >48)
 	{
 		PS.statusText("YOU WIN!!!!!!");
