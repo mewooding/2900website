@@ -45,8 +45,8 @@ PS.init = function( system, options ) {
 
 function start()
 {
-	PS.timerStart(5,play); //number is loop time, 1/60 sec
-
+	PS.timerStart(1,play); //number is loop time, 1/60 sec
+	//should be 5 ^
 
 }
 
@@ -204,7 +204,7 @@ function play()
 	}
 	if(score < 1)
 	{
-		PS.statusText("You Loose :(");
+		PS.statusText("You Lose :(");
 		setTimeout(function()
 		{
 			score = 3;
