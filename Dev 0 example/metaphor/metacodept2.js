@@ -30,7 +30,7 @@ PS.init = function( system, options ) {
 
 	PS.gridSize(23, 23);
 
-	PS.statusText( "Plant Grow");
+	PS.statusText( "Collect items to grow");
 	//writing a comment so it updates
 
 	PS.statusColor(PS.COLOR_BLACK);
@@ -190,7 +190,7 @@ function play()
 		PS.color(itemx, 1, pest)
 	} 
 
-	PS.statusText("Plant Grow");
+	PS.statusText("Collect items to grow");
 	
 	if(score >48)
 	{
