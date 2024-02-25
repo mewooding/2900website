@@ -14,7 +14,7 @@ let BucketX = 5;
 let sun = PS.COLOR_YELLOW;
 let water = PS.COLOR_BLUE; 
 let pest = PS.COLOR_RED;
-let score = 45;
+let score = 3;
 let gamespeed = 6;
 
 
