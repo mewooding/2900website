@@ -7,12 +7,16 @@ let BORDER = PS.COLOR_GRAY_DARK;
 let BCOLOR = { rgb : 0xD0D0D0 };
 let DG = {rgb : 0x5BA416};
 let LG = {rgb : 0x7CDf1f};
+let LP = {rgb : 0xE8A9F0};
+let DP = {rgb : 0xCE52C8};
 
 let BucketX = 5;
 let sun = PS.COLOR_YELLOW;
-let water = PS.COLOR_BLUE;
+let water = PS.COLOR_BLUE; 
 let pest = PS.COLOR_RED;
-let score = 3;
+let score = 45;
+let gamespeed = 6;
+
 
 let plant = [[16,17,DG],[17,17,LG],[17,16,LG],[16,16,DG],
 			[16,15,DG],[15,15,DG],[14,15,DG],[14,14,DG],[13,14,DG],
@@ -24,6 +28,20 @@ let plant = [[16,17,DG],[17,17,LG],[17,16,LG],[16,16,DG],
 			[16,6,LG],[16,5,LG],[16,4,DG],[16,3,DG],[15,3,DG],[15,2,LG],[14,2,LG],
 			[17,2,DG],[17,1,LG]];
 
+let flower = [[14,6,LP],[15,6,LP],[18,6,DP],[19,6,LP],
+			[14,5,DP],[15,5,LP],[16,5,LP],[17,5,DP],[18,5,LP],[19,5,LP],
+			[15,4,DP],[16,4,LP],[17,4,LP],[18,4,LP],
+			[15,3,LP],[16,3,LP],[17,3,LP],[18,3,DP],
+			[14,2,LP],[15,2,LP],[16,2,DP],[17,2,LP],[18,2,LP],[19,2,DP],
+			[14,1,LP],[15,1,DP],[18,1,LP],[19,1,LP]];
+
+let resetflower = [[14,6,BKG],[15,6,BKG],[18,6,BKG],[19,6,BKG],
+			[14,5,BKG],[15,5,BKG],[16,5,BKG],[17,5,BKG],[18,5,BKG],[19,5,BKG],
+			[15,4,BKG],[16,4,BKG],[17,4,BKG],[18,4,BKG],
+			[15,3,BKG],[16,3,BKG],[17,3,BKG],[18,3,BKG],
+			[14,2,BKG],[15,2,BKG],[16,2,BKG],[17,2,BKG],[18,2,BKG],[19,2,BKG],
+			[14,1,BKG],[15,1,BKG],[18,1,BKG],[19,1,BKG]];
+
 PS.init = function( system, options ) {
 
 	//PS.debug( "PS.init() called\n" );
@@ -34,7 +52,12 @@ PS.init = function( system, options ) {
 	//writing a comment so it updates
 
 	PS.statusColor(PS.COLOR_BLACK);
-	
+
+	PS.audioLoad("fx_bucket");
+	PS.audioLoad("fx_drip1");
+	PS.audioLoad("fx_uhoh");
+	PS.audioLoad("fx_tada");
+	PS.audioLoad("fx_wilhelm");
 	
 	basemap();
 
@@ -45,8 +68,7 @@ PS.init = function( system, options ) {
 
 function start()
 {
-	PS.timerStart(5,play); //number is loop time, 1/60 sec
-	//should be 5 ^
+	PS.timerStart(gamespeed,play); //number is loop time, 1/60 sec
 
 }
 
@@ -123,13 +145,20 @@ function play()
 	
 
 	//checks item location, changes score
-	if(PS.color (BucketX,19) == sun || PS.color(BucketX,19) == water || PS.color (BucketX+1,19) == sun || PS.color(BucketX+1,19) == water)
+	if(PS.color (BucketX,19) == sun ||  PS.color (BucketX+1,19) == sun)
 	{
 		score++;
+		PS.audioPlay("fx_bucket");
+	}
+	else if(PS.color(BucketX,19) == water ||PS.color(BucketX+1,19) == water)
+	{
+		score++;
+		PS.audioPlay("fx_drip1");
 	}
 	else if(PS.color(BucketX,19) == pest || PS.color(BucketX+1,19) == pest)
 	{
 		score--;
+		PS.audioPlay("fx_uhoh");
 	}
 
 	// PS.debug("scrore is " + score + "\n");
@@ -194,20 +223,43 @@ function play()
 	
 	if(score >48)
 	{
-		PS.statusText("YOU WIN!!!!!!");
+		//gamespeed = 60;
+		sun = BKG;
+		water = BKG; 
+		pest = BKG;
+		for (var i=0; i< flower.length; i++)
+		{
+			PS.color(flower[i][0], flower[i][1], flower[i][2]);
+		}
+		PS.audioPlay("fx_tada");
 
 		setTimeout(function()
 		{
 			score = 3;
+			//gamespeed = 6;
+			for (var i=0; i< resetflower.length; i++)
+			{
+			PS.color(resetflower[i][0], resetflower[i][1], resetflower[i][2]);
+			}
+			sun = PS.COLOR_YELLOW;
+			water = PS.COLOR_BLUE; 
+			pest = PS.COLOR_RED;
+			
 		},3000);
-		
 	}
 	if(score < 1)
 	{
+		sun = BKG;
+		water = BKG; 
+		pest = BKG;
 		PS.statusText("You Lose :(");
+		PS.audioPlay("fx_wilhelm");
 		setTimeout(function()
 		{
 			score = 3;
+			sun = PS.COLOR_YELLOW;
+			water = PS.COLOR_BLUE; 
+			pest = PS.COLOR_RED;
 		},3000);
 	}
 
